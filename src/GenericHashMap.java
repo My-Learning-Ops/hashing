@@ -82,20 +82,39 @@ public class GenericHashMap<K, V> {
             numOfBuckets = newBucketSize;
         }
 
+        // Checks if the key exists in the hash map
         public boolean contains(K key) {
-
+            int hash = getHash(key, numOfBuckets);
+            ArrayList<Pair<K, V>> currentBucket = buckets[hash];
+            return currentBucket.contains(new Pair<>(key));
         }
 
+        // Adds a key value pair to the hash map
         public boolean add(K key, V value) {
+            int hash = getHash(key, numOfBuckets);
+            ArrayList<Pair<K, V>> currentBucket = buckets[hash];
 
+            // Check to see if key already exists
+            if (currentBucket.contains(new Pair<>(key))) {
+                return false;
+            }
+
+            currentBucket.add(new Pair<>(key, value));
+            size++;
+
+            // Check if resize is needed
+            if ((double) size / numOfBuckets > AVG_BUCKET_SIZE) {
+                resize();
+            }
+            return true;
         }
 
+        // Removes a pair from the hash map
         public boolean remove(K key) {
-
+            int hash = getHash(key, numOfBuckets);
+            ArrayList<Pair<K, V>> currentBucket = buckets[hash];
+            return currentBucket.remove(new Pair<>(key));
         }
-
-
-
 
 
 
