@@ -94,12 +94,12 @@ public class HashMap {
         if (currentBucket.contains(new Pair(key))) return false;
         // If it dosent exist add new pair
         currentBucket.add(new Pair(key, value));
+        size++;
 
         // Check if resize is needed
         if ((float) size / numOfBuckets > AVG_BUCKET_SIZE) {
             resize();
         }
-        size++;
         return true;
     }
 
@@ -110,9 +110,18 @@ public class HashMap {
         return currentBucket.remove(new Pair(key));
     }
 
+    // Returns a string representation of the hash map
     @Override
     public String toString() {
-
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < buckets.length; i++) {
+            sb.append((String.format("Bucket %d: ", i)));
+            for (Pair pair : buckets[i]) {
+                sb.append(pair.toString()).append(", ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 
 }
