@@ -82,12 +82,14 @@ public class HashMap {
         numOfBuckets = newBucketSize;
     }
 
+    // Check if the key exists in the hash map
     public boolean contains(int x) {
-
+        int hash = getHash(x, numOfBuckets);
+        ArrayList<Pair> currentBucket = buckets[hash];
+        return currentBucket.contains(new Pair(x));
     }
 
-    public boolean add(int x, String v) {
-
+    public boolean add(int key, String value) {
     }
 
     public boolean remove(int x) {
