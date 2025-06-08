@@ -53,11 +53,30 @@ public class HashSet<T> {
         numOfBuckets = newBucketSize;
     }
 
+    // Inserts an item into the hash set and returns true if successful
     public boolean insert(T x) {
-        
+        int hash = Math.abs(getHash(x, numOfBuckets));
+        ArrayList<T> currentBucket = buckets[hash];
+
+        if (currentBucket.contains(x)) return false;
+        currentBucket.add(x);
+
+        // Resize if collision chances are high
+        if ((float) size / numOfBuckets > AVG_BUCKET_SIZE) {
+            resize();
+        }
+        size++;
+        return true;
     }
 
+    public boolean remove(T x) {
+    }
 
+    public int getNumOfBuckets() {
+    }
+
+    public int getNumOfEmptyBuckets() {
+    }
 
 
 
