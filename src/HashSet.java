@@ -31,7 +31,31 @@ public class HashSet<T> {
         return currentBucket.contains(x);
     }
 
-    public void resiz
+    // Resize
+    public void resize() {
+        int newBucketSize = numOfBuckets * 2;
+        ArrayList<T>[] newBuckets = new ArrayList[newBucketSize];
+
+        // Create the new buckets
+        for (int i = 0; i < newBucketSize; i++) {
+            newBuckets[i] = new ArrayList<T>();
+        }
+
+        // Copy elements over and use new hashes
+        for (int i = 0; i < numOfBuckets; i++) {
+            for (T y : buckets[i]) {
+                int hash = getHash(y, newBucketSize);
+                newBuckets[hash].add(y);
+            }
+        }
+        // Set the new buckets and size
+        buckets = newBuckets;
+        numOfBuckets = newBucketSize;
+    }
+
+    public boolean insert(T x) {
+        
+    }
 
 
 
