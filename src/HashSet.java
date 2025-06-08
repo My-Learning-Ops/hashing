@@ -94,6 +94,13 @@ public class HashSet<T> {
         return size;
     }
 
+    // Returns the largest bucket size
+    public int getLargestBucketSize() {
+        int maxSize = 0;
+        for (ArrayList bucket : buckets)
+            if (bucket.size() > maxSize) maxSize = bucket.size();
+        return maxSize;
+    }
 
 
 }
