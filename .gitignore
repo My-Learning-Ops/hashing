@@ -24,3 +24,7 @@ hs_err_pid*
 replay_pid*
 
 .vscode/
+out/
+.DS_Store
+!**/src/main/**/out/
+!**/src/test/**/out/
