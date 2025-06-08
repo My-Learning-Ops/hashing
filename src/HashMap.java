@@ -1,8 +1,5 @@
 
-
-
 import java.util.ArrayList;
-
 
 public class HashMap {
 
@@ -83,10 +80,10 @@ public class HashMap {
     }
 
     // Check if the key exists in the hash map
-    public boolean contains(int x) {
-        int hash = getHash(x, numOfBuckets);
+    public boolean contains(int key) {
+        int hash = getHash(key, numOfBuckets);
         ArrayList<Pair> currentBucket = buckets[hash];
-        return currentBucket.contains(new Pair(x));
+        return currentBucket.contains(new Pair(key));
     }
 
     public boolean add(int key, String value) {
@@ -106,21 +103,16 @@ public class HashMap {
         return true;
     }
 
-    public boolean remove(int x) {
-
+    // Remove key from the hash map
+    public boolean remove(int key) {
+        int hash = getHash(key, numOfBuckets);
+        ArrayList<Pair> currentBucket = buckets[hash];
+        return currentBucket.remove(new Pair(key));
     }
 
     @Override
     public String toString() {
 
     }
-
-
-
-
-
-
-
-
 
 }
