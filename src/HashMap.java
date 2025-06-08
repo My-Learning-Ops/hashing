@@ -90,6 +90,20 @@ public class HashMap {
     }
 
     public boolean add(int key, String value) {
+        int hash = Math.abs(getHash(key, numOfBuckets));
+        ArrayList<Pair> currentBucket = buckets[hash];
+
+        // Check if key already exists
+        if (currentBucket.contains(new Pair(key))) return false;
+        // If it dosent exist add new pair
+        currentBucket.add(new Pair(key, value));
+
+        // Check if resize is needed
+        if ((float) size / numOfBuckets > AVG_BUCKET_SIZE) {
+            resize();
+        }
+        size++;
+        return true;
     }
 
     public boolean remove(int x) {
