@@ -57,12 +57,29 @@ public class HashMap {
         size = 0;
     }
 
+    // Gets the bucket index (hash) for a given key
     private int getHash(int key, int hashSize) {
         return Math.abs(key % hashSize);
     }
 
+    // Resizes the hash map
     public void resize() {
+        int newBucketSize = numOfBuckets * 2;
+        ArrayList<Pair>[] newBuckets = new ArrayList[newBucketSize];
+        // Create the new buckets
+        for (int i = 0; i < newBucketSize; i++) {
+            newBuckets[i] = new ArrayList<>();
+        }
 
+        // Copy elements over and use the new hashes
+        for (int i = 0; i < numOfBuckets; i++) {
+            for (Pair pair : buckets[i]) {
+                int hash = getHash(pair.key, newBucketSize);
+                newBuckets[hash].add(pair);
+            }
+        }
+        buckets = newBuckets;
+        numOfBuckets = newBucketSize;
     }
 
     public boolean contains(int x) {
