@@ -69,7 +69,11 @@ public class HashSet<T> {
         return true;
     }
 
+    // Removes an element from the hash set
     public boolean remove(T x) {
+        int hash = getHash(x, numOfBuckets);
+        ArrayList<T> currentBucket = buckets[hash];
+        return currentBucket.remove(x);
     }
 
     public int getNumOfBuckets() {
