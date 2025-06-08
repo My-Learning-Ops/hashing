@@ -43,6 +43,45 @@ public class HashMap {
         }
     }
 
+    public ArrayList<Pair>[] buckets;
+    public int numOfBuckets = 20;
+    public int size = 0;
+    public static final double AVG_BUCKET_SIZE = 2;
+
+    // Constructs the hash map
+    public HashMap() {
+        buckets = new ArrayList[numOfBuckets];
+        for (int i = 0; i < numOfBuckets; i++) {
+            buckets[i] = new ArrayList<>();
+        }
+        size = 0;
+    }
+
+    private int getHash(int key, int hashSize) {
+        return Math.abs(key % hashSize);
+    }
+
+    public void resize() {
+
+    }
+
+    public boolean contains(int x) {
+
+    }
+
+    public boolean add(int x, String v) {
+
+    }
+
+    public boolean remove(int x) {
+
+    }
+
+    @Override
+    public String toString() {
+
+    }
+
 
 
 
