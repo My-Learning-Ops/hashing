@@ -41,6 +41,41 @@ public class GenericHashMap<K, V> {
             return "Key: " + key + ", Value: " + value;
         }
 
+        private ArrayList<Pair<K, V>>[] buckets;
+        private int numOfBuckets = 20;
+        private int size = 0;
+        private static final double AVG_BUCKET_SIZE = 2;
+
+        // Constructs the generic hash map
+        public GenericHashMap() {
+            buckets = new ArrayList[numOfBuckets];
+            for (int i = 0; i < numOfBuckets; i++) {
+                buckets[i] = new ArrayList<>();
+            }
+            size = 0;
+        }
+
+        // Gets the bucket index (hash) for a given key
+        private int getHash(K key, int hashSize) {
+            return Math.abs(key.hashCode() % hashSize);
+        }
+
+        public void resize() {
+
+        }
+
+        public boolean contains(K key) {
+
+        }
+
+        public boolean add(K key, V value) {
+
+        }
+
+        public boolean remove(K key) {
+            
+        }
+
 
 
 
