@@ -76,10 +76,22 @@ public class HashSet<T> {
         return currentBucket.remove(x);
     }
 
+    // Returns the number of buckets in the hash set
     public int getNumOfBuckets() {
+        return numOfBuckets;
     }
 
+    // Returns the number of empty buckets in the hash set
     public int getNumOfEmptyBuckets() {
+        int emptyBuckets = 0;
+        for (ArrayList bucket : buckets) 
+            if (bucket.size() == 0) emptyBuckets++;
+        return emptyBuckets;
+    }
+
+    // Returns the size of the hash set
+    public int size() {
+        return size;
     }
 
 
