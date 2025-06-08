@@ -60,8 +60,26 @@ public class GenericHashMap<K, V> {
             return Math.abs(key.hashCode() % hashSize);
         }
 
+        // Resizes the hash map
         public void resize() {
+            int newBucketSize = numOfBuckets * 2;
+            ArrayList<Pair<K, V>>[] newBuckets = new ArrayList[newBucketSize];
 
+            // Create the new buckets
+            for (int i = 0; i < newBucketSize; i++) {
+                newBuckets[i] = new ArrayList<>();
+            }
+
+            // Copy elements over and use new hashes
+            for (int i = 0; i < numOfBuckets; i++) {
+                for (Pair<K, V> pair : buckets[i]) {
+                    int hash = getHash(pair.key, newBucketSize);
+                    newBuckets[hash].add(pair);
+                }
+            }
+            // Set the new buckets and size
+            buckets = newBuckets;
+            numOfBuckets = newBucketSize;
         }
 
         public boolean contains(K key) {
@@ -73,7 +91,7 @@ public class GenericHashMap<K, V> {
         }
 
         public boolean remove(K key) {
-            
+
         }
 
 
