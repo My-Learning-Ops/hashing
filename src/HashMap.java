@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 
+// Implementation of a hash map with integer keys and string values
 public class HashMap {
 
     // Class to represent a key-value pair
@@ -86,6 +87,7 @@ public class HashMap {
         return currentBucket.contains(new Pair(key));
     }
 
+    // Adds a new pair to the hash map
     public boolean add(int key, String value) {
         int hash = Math.abs(getHash(key, numOfBuckets));
         ArrayList<Pair> currentBucket = buckets[hash];
@@ -103,7 +105,7 @@ public class HashMap {
         return true;
     }
 
-    // Remove key from the hash map
+    // Removes a pair from the hash map
     public boolean remove(int key) {
         int hash = getHash(key, numOfBuckets);
         ArrayList<Pair> currentBucket = buckets[hash];
